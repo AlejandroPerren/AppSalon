@@ -6,9 +6,7 @@ const app = express();
 
 
 
-app.get('/auth', (req, res)=>{
-    res.send('Hola')
-})
+app.get('/auth', authRouter)
 
 app.listen(process.env.PORT,()=>{
     console.log(`App listening in Port: ${process.env.PORT}`)
