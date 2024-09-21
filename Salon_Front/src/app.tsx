@@ -1,4 +1,4 @@
-import { NavbarAdmin } from "./Content/NavbarAdmin"
+import { NavbarAdmin } from "./Content/Navbar"
 
 export const App = () => {
 
