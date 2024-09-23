@@ -1,4 +1,4 @@
-const db = require('../../utils/mysql').db;
+const db = require('../../config.js/mysql').db;
 const mysql = require('mysql2/promise')
 
 const register = async (req, res) => {

@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const db = require('./utils/mysql');
+const db = require('./config.js/mysql');
 dotenv.config();
 const app = express();
 const bodyParser = require('body-parser');
