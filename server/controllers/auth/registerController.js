@@ -1,4 +1,5 @@
 const db = require('../../utils/mysql').db;
+const mysql = require('mysql2/promise')
 
 const register = async (req, res) => {
     const { correo, password, dni, tel } = req.body;
@@ -8,7 +9,7 @@ const register = async (req, res) => {
     }
 
     const sql = 'INSERT INTO usuarios (dni, password, correo, tel) VALUES (?, ?, ?, ?)';
-    db.query(sql, [dni, password, correo, tel], (err, result) => {
+    await db.query(sql, [dni, password, correo, tel], (err, result) => {
         if (err) {
             return res.status(500).json({ error: 'Error al registrar el usuario' });
         }
