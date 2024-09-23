@@ -1,5 +1,5 @@
 const mysql = require('mysql2');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 dotenv.config();
 
 const db = mysql.createConnection({
@@ -7,14 +7,16 @@ const db = mysql.createConnection({
     user: process.env.DB_USER,
     database: 'app_salon',
     password: process.env.DB_PASSWORD
-})
+});
 
+// Conectar a la base de datos
 db.connect((err) => {
     if (err) {
-      console.error('Error connecting to the database:', err);
-      return;
+        console.error('Error connecting to the database:', err);
+        return;
     }
     console.log('Database connected successfully!');
-  });
-  
-  db.end();
+});
+
+// Exportar la conexión
+module.exports = db;

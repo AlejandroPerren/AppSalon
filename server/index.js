@@ -1,14 +1,17 @@
-const express = require('express')
-const dotenv = require('dotenv')
-const db = require('./utils/mysql')
+const express = require('express');
+const dotenv = require('dotenv');
+const db = require('./utils/mysql');
 dotenv.config();
 const app = express();
+const bodyParser = require('body-parser');
+const authRouter = require('./routes/authRouter');
+
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 
+app.use('/auth', authRouter);
 
-app.get('/auth', authRouter)
-
-app.listen(process.env.PORT,()=>{
-    console.log(`App listening in Port: ${process.env.PORT}`)
-    console.log(db)
-})
+app.listen(process.env.PORT, () => {
+    console.log(`App listening on Port: ${process.env.PORT}`);
+});
