@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import './index.css'
 import { LoginContent } from "./Content/auth/LoginPage"
 export const App = () => {
-
+    
     return (
         <div className="App">
             <BrowserRouter>
