@@ -12,7 +12,7 @@ type Usuario = {
 
 const URI: string = 'http://localhost:4000/auth/register';
 
-export const Register = () => {
+export const RegisterContent = () => {
 
     const [correo, setCorreo] = useState<string>('');
     const [password, setPassword] = useState<string>('');

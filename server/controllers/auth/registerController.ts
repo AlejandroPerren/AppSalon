@@ -1,7 +1,6 @@
 import db from '../../config.js/mysql'
 import { Request, Response } from 'express'
 import { Pool } from 'mysql2/promise';
-import mysql from 'mysql2/promise';
 
 
 interface RegisterBody {
