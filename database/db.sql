@@ -4,10 +4,10 @@ USE app_salon;
 
 CREATE TABLE usuarios (
   id INT NOT NULL AUTO_INCREMENT,
-  dni INT(60) NOT NULL,
+  dni BIGINT NOT NULL,
   password VARCHAR(80) NOT NULL,
   correo VARCHAR(80) NOT NULL,
-  tel INT(60) NOT NULL,
+  tel BIGINT NOT NULL,
   rol VARCHAR(80) NOT NULL DEFAULT 'usuario',
   PRIMARY KEY (id)
 );
