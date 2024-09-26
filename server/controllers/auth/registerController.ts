@@ -1,7 +1,7 @@
 import db from '../../config.js/mysql'
 import { Request, Response } from 'express'
 import { Pool } from 'mysql2/promise';
-
+import { hashedPassword } from '../../utils/security';
 
 interface RegisterBody {
     correo: string;
@@ -18,7 +18,8 @@ export const register = async (req: Request, res: Response): Promise<Response> =
     const sql = 'INSERT INTO usuarios (dni, password, correo, tel) VALUES (?, ?, ?, ?)';
     try {
         const connection = await (db as Pool).getConnection();
-        const [result] = await connection.query(sql, [dni, password, correo, tel]);
+        const passwordHash = await hashedPassword(password);
+        const [result] = await connection.query(sql, [dni, passwordHash, correo, tel]);
 
         connection.release();
 

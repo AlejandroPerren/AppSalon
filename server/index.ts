@@ -1,6 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
-import db from './config.js/mysql';
 import bodyParser from 'body-parser';
 import authRouter from './routes/authRouter';
 
@@ -24,3 +23,4 @@ app.use('/auth', authRouter);
 app.listen(process.env.PORT, () => {
     console.log(`App listening on Port: ${process.env.PORT}`);
 });
+// incorpora CORS CRACK

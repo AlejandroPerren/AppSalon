@@ -29,7 +29,7 @@ export const RegisterContent = () => {
             dni,
             tel
         }
-        console.log(user);
+        
         await axios.post(URI, user); 
         navigate('/auth/login');
     }
