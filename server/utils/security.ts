@@ -17,5 +17,9 @@ export const generateToken = async (id: number): Promise<string> => {
     return token;
 }
 
+export const decodeToken = async (token: string): Promise<any> => {
+    const decoded = await jwt.verify(token, process.env.KEY_SECRET_JWT as string);  
+    return decoded;
+}
 
 

@@ -14,21 +14,12 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     if (!password || !dni) {
         return res.status(400).json({ error: 'Todos los campos son obligatorios' });
     }
-
-
     const sql = `SELECT * FROM usuarios WHERE dni = ?`;
-    
     try {
         const connection = await (db as Pool).getConnection();
-        
-       
         const [rows] = await connection.query(sql, [dni]);
-
-
         connection.release();
-
-        
-        if (!(rows.length)) {
+        if (!(rows as any[]).length) {
             return res.status(400).json({ error: 'Credenciales incorrectas' });
         }
         const user = rows[0]; 
