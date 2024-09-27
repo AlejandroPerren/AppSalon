@@ -7,7 +7,7 @@ type UserType = {
   name: string;
 }
 export const LoginContent = () => {
-  const [user, setUser] = useState<UserType | null>(null); 
+  const [user, setUser] = useState<UserType | string | null>(null); 
   const [password, setPassword] = useState<string>('');
   const [dni, setDNI] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
@@ -17,7 +17,7 @@ export const LoginContent = () => {
 const handleLogin = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
   e.preventDefault();
   try {
-    const user: UserType = await loginService({
+    const user = await loginService({
       dni,
       password
     });
