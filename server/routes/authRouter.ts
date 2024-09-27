@@ -6,7 +6,7 @@ import { profile } from '../controllers/auth/profileController';
 
 const router = express.Router(); 
 
-// Registrar
+// Logout//Login
 router.post('/register', register);
 router.post('/login', login);
 
