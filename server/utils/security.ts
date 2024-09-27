@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 
+dotenv.config();
 //hashed password
 export const hashedPassword = async (password: string): Promise<string> => {
     password = await bcrypt.hash(password, 10);
@@ -12,7 +13,7 @@ export const comparePassword = async (password: string, hash: string): Promise<b
 }
 
 // Generate Token
-export const generateToken = async (id: number): Promise<string> => {
+export const generateToken = async (id: string): Promise<string> => {
     const token = await jwt.sign({id}, process.env.KEY_SECRET_JWT as string, { expiresIn: '1h' });
     return token;
 }

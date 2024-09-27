@@ -2,24 +2,20 @@ import { decodeToken } from "../utils/security";
 import express, { Request, Response, NextFunction } from 'express';
 
 export const tokenMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers['x-access-token'];
+    //'x-access-token' es el nombre de un header personalizado que suele usarse para enviar un token de autenticación en las solicitudes HTTP. Este header contiene el token que el cliente envía al servidor, por ejemplo, un token JWT (JSON Web Token).
+    const token = req.headers['x-access-token'] as string;
 
-    // Validar si el token existe o si es un arreglo (lo cual no sería correcto)
-    if (!token || Array.isArray(token)) {
+    if (!token) {
         return res.status(401).json({ error: 'No token provided' });
     }
 
     try {
-        // Decodificar el token usando tu utilidad `decodeToken`
         const decoded = await decodeToken(token);
+        //res.locals es una forma segura de compartir datos entre middleware y controladores sin modificar el objeto Request
+        res.locals.user = decoded;
 
-        // Almacenar la información del usuario decodificada en el objeto req
-        req.user = decoded; 
-
-        // Pasar al siguiente middleware o controlador
-        next();
+        next(); 
     } catch (error) {
         return res.status(401).json({ error: 'Invalid token' });
     }
 };
-
