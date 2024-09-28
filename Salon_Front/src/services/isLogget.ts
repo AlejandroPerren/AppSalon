@@ -10,3 +10,11 @@ const isLoggedIn = (): boolean => {
   };
   
 export default getProtectedData;
+
+import ProtectedRoute from './ProtectedRoute';
+
+<Route path="/admin" element={
+  <ProtectedRoute requiredRole="admin">
+    <AdminPage />
+  </ProtectedRoute>
+} />
