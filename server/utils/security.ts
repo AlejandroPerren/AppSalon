@@ -13,8 +13,8 @@ export const comparePassword = async (password: string, hash: string): Promise<b
 }
 
 // Generate Token
-export const generateToken = async (user: { id: string, role: string }): Promise<string> => {
-    const token = await jwt.sign({ id: user.id, role: user.role }, process.env.KEY_SECRET_JWT as string, { expiresIn: '1h' });
+export const generateToken = async (user: { dni: string, role: string }): Promise<string> => {
+    const token = await jwt.sign({ dni: user.dni, role: user.role }, process.env.KEY_SECRET_JWT as string, { expiresIn: '1h' });
     return token;
 }
 

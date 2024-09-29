@@ -12,7 +12,6 @@ interface Usuario extends RowDataPacket {
     dni: string;
     password: string;
 }
-
 export const login = async (req: Request, res: Response): Promise<Response> => {
     const { dni, password } = req.body as LoginBody;
     
@@ -40,7 +39,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
             return res.status(400).json({ error: 'Credenciales incorrectas' });
         }
 
-        const token = await generateToken(user.dni);
+        const token = await generateToken({ dni: user.dni, role: user.role });
 
         return res.status(200).json({ message: 'Login exitoso', token });
         
