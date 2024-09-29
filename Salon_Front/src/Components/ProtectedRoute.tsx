@@ -10,30 +10,14 @@ const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps): JSX.El
   const role = getRoleFromToken();
 
   if (!isLoggedIn()) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/auth/login" />;  
   }
 
   if (role !== requiredRole) {
-    return <Navigate to="/unauthorized" />;
+    return <Navigate to="/unauthorized" />; 
   }
 
   return children;
 };
 
 export default ProtectedRoute;
-
-import jwtDecode from 'jwt-decode';
-
-interface DecodedToken {
-  id: string;
-  role: string;
-  exp: number;  // Expiración del token
-}
-
-export const getRoleFromToken = (): string | null => {
-  const token = localStorage.getItem('token');
-  if (!token) return null;
-
-  const decoded = jwtDecode<DecodedToken>(token);
-  return decoded.role;
-};

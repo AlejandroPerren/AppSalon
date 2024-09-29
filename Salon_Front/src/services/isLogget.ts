@@ -1,20 +1,20 @@
-import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
-const getProtectedData = async () => {
-    const { data } = await axios.get('/protected-route'); // Cambia a tu ruta protegida
-    return data;
+interface DecodedToken {
+  id: string;
+  role: string;
+  exp: number;
+}
+
+export const isLoggedIn = (): boolean => {
+  const token = localStorage.getItem('token');
+  return !!token;  // Devuelve true si existe un token
 };
-const isLoggedIn = (): boolean => {
-    const token = localStorage.getItem('token');
-    return !!token; // Retorna true si existe un token
-  };
-  
-export default getProtectedData;
 
-import ProtectedRoute from './ProtectedRoute';
+export const getRoleFromToken = (): string | null => {
+  const token = localStorage.getItem('token');
+  if (!token) return null;
 
-<Route path="/admin" element={
-  <ProtectedRoute requiredRole="admin">
-    <AdminPage />
-  </ProtectedRoute>
-} />
+  const decoded = jwtDecode<DecodedToken>(token);
+  return decoded.role;
+};
