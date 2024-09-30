@@ -1,6 +1,7 @@
 import '../../Utils/NavUtil'
 import { useState } from 'react';
 
+
 export const NavbarAdmin = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
