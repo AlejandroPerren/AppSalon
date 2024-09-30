@@ -8,7 +8,7 @@ interface DecodedToken {
 
 export const isLoggedIn = (): boolean => {
   const token = localStorage.getItem('token');
-  return !!token;  // Devuelve true si existe un token
+  return !!token;  
 };
 
 export const getRoleFromToken = (): string | null => {
