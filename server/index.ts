@@ -2,7 +2,8 @@ import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import authRouter from './routes/authRouter';
-
+import adminRouter from './routes/adminRouter';
+import apiRoutes from './routes/apiRouter';
 dotenv.config(); 
 
 const app = express();
@@ -19,6 +20,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use('/auth', authRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api', apiRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`App listening on Port: ${process.env.PORT}`);

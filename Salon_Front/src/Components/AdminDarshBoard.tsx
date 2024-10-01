@@ -16,7 +16,7 @@ interface Ingreso {
 export const AdminDashboard = () => {
   const [citas, setCitas] = useState<Cita[]>([]);
   const [ingresos, setIngresos] = useState<Ingreso[]>([]);
-  const role = getRoleFromToken();
+  const role = getRoleFromToken();  
 
   useEffect(() => {
     if (role === 'admin') {
