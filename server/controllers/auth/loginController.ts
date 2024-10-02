@@ -7,8 +7,12 @@ interface LoginBody {
     dni: string;
     password: string;
 }
-// RowDataPacket: RowDataPacket[] es simplemente la interface que representa lo que te devuelve una query. Como una query puede devolverte diferentes resultados ( RowDataPacket[] | RowDataPacket[][] | OkPacket | OkPacket[] | ResultSetHeader), es necesario el casting para especificar el objeto que esperas de acuerdo a la consulta que hiciste
-interface Usuario extends RowDataPacket {   
+/* RowDataPacket: RowDataPacket[] es simplemente la interface que 
+representa lo que te devuelve una query. Como una query puede 
+devolverte diferentes resultados ( RowDataPacket[] | RowDataPacket[][] | OkPacket | OkPacket[] | ResultSetHeader),
+ es necesario el casting para especificar el objeto que esperas de acuerdo a la consulta se realiza
+*/
+ interface Usuario extends RowDataPacket {   
     dni: string;
     password: string;
 }
@@ -40,7 +44,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
         }
 
         const token = await generateToken({ dni: user.dni, role: user.role });
-
+        console.log(token)
         return res.status(200).json({ message: 'Login exitoso', token });
         
     } catch (err) {

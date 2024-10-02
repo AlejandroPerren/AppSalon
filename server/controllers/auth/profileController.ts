@@ -1,6 +1,4 @@
-import express, { Request, Response, NextFunction } from 'express';
-import { JwtPayload } from 'jsonwebtoken';
-
+import { Request, Response } from 'express';
 
 
 export const profile = async (req: Request, res: Response): Promise<Response> => {

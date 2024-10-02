@@ -12,7 +12,6 @@ CREATE TABLE usuarios (
   PRIMARY KEY (id)
 );
 
-
 CREATE TABLE servicios (
   id INT NOT NULL AUTO_INCREMENT,
   nombre_serv VARCHAR(50) NOT NULL,
@@ -22,7 +21,6 @@ CREATE TABLE servicios (
   PRIMARY KEY (id)
 );
 
-
 CREATE TABLE citas (
   id_cita INT NOT NULL AUTO_INCREMENT,
   fecha DATE NOT NULL,
@@ -31,8 +29,6 @@ CREATE TABLE citas (
   PRIMARY KEY (id_cita),
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
 );
-
-
 CREATE TABLE citas_servicios (
   id_cita INT,
   id_servicio INT,
@@ -40,3 +36,10 @@ CREATE TABLE citas_servicios (
   FOREIGN KEY (id_cita) REFERENCES citas(id_cita) ON DELETE CASCADE,
   FOREIGN KEY (id_servicio) REFERENCES servicios(id) ON DELETE CASCADE
 );
+
+SELECT citas.id ,usuarios.dni , servicios.nombre_servq , citas.fecha,  citas.hora, servicios.duracion, servicios.precio, servicios.descripcion
+FROM usuarios
+JOIN citas ON usuarios.id = citas.id_usuario
+JOIN citas_servicios ON citas.id = citas_servicios.id_cita
+JOIN servicios ON servicios.id = citas_servicios.id_servicio
+WHERE usuarios.dni = '12345678';

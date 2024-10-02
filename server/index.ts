@@ -22,6 +22,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use('/auth', authRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api', apiRoutes);
+app.use('/' , (req: Request, res: Response) => {
+    res.redirect('/auth/login');
+})
 
 app.listen(process.env.PORT, () => {
     console.log(`App listening on Port: ${process.env.PORT}`);

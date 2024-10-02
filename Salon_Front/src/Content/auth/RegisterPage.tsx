@@ -94,7 +94,7 @@ export const RegisterContent = () => {
         </form>
 
         <p className="text-center text-gray-600 text-sm mt-4">
-          ¿Ya tienes cuenta? <a href="/login" className="text-blue-500 hover:underline">Inicia sesión aquí</a>
+          ¿Ya tienes cuenta? <a href="/auth/login" className="text-blue-500 hover:underline">Inicia sesión aquí</a>
         </p>
       </div>
     </div>
