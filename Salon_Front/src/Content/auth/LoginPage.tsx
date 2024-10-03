@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import loginService from '../../services/login';
+import { jwtDecode } from 'jwt-decode';
 
 type UserType = {
   id: string;
@@ -19,11 +20,9 @@ export const LoginContent = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     try {
-      const loggedUser = await loginService({
-        dni,
-        password
-      });
-      setUser(loggedUser);
+      const token = await loginService({ dni, password });
+      const decodedUser: UserType = jwtDecode(token); 
+      setUser(decodedUser); 
       navigate('/'); 
     } catch (error: unknown) {
       setError('Credenciales incorrectas. Inténtalo de nuevo.');

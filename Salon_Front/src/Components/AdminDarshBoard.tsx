@@ -16,6 +16,7 @@ interface Ingreso {
 export const AdminDashboard = () => {
   const [citas, setCitas] = useState<Cita[]>([]);
   const [ingresos, setIngresos] = useState<Ingreso[]>([]);
+  const [error, setError] = useState<string | null>(null); 
   const role = getRoleFromToken();  
 
   useEffect(() => {
@@ -30,6 +31,7 @@ export const AdminDashboard = () => {
           setIngresos(ingresosResponse.data);
         } catch (error) {
           console.error('Error fetching admin data:', error);
+          setError('Error al cargar los datos de administración.');
         }
       };
 
@@ -39,6 +41,10 @@ export const AdminDashboard = () => {
 
   if (role !== 'admin') {
     return <p>No tienes acceso a esta página.</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-500">{error}</p>;
   }
 
   return (

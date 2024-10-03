@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import authRouter from './routes/authRouter';
 import adminRouter from './routes/adminRouter';
 import apiRoutes from './routes/apiRouter';
+
 dotenv.config(); 
 
 const app = express();
@@ -11,22 +12,23 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.append('Access-Control-Allow-Origin', ['*']);
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
+    res.append('Access-Control-Allow-Headers', 'Authorization, Content-Type'); // Añadir 'Authorization' aquí
     next();
 });
 
 app.use('/auth', authRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api', apiRoutes);
-app.use('/' , (req: Request, res: Response) => {
+
+app.use('/', (req: Request, res: Response) => {
     res.redirect('/auth/login');
-})
+});
 
 app.listen(process.env.PORT, () => {
     console.log(`App listening on Port: ${process.env.PORT}`);
 });
+
 // incorpora CORS CRACK

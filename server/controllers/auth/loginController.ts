@@ -34,8 +34,8 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
             return res.status(400).json({ error: 'Credenciales incorrectas' });
         }
 
-        const user = rows[0]; 
-        const hashedPassword = user.password; 
+        const user = rows[0];
+        const hashedPassword = user.password;
 
         const isPasswordValid = await comparePassword(password, hashedPassword);
         
@@ -43,8 +43,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
             return res.status(400).json({ error: 'Credenciales incorrectas' });
         }
 
-        const token = await generateToken({ dni: user.dni, role: user.role });
-        console.log(token)
+        const token = await generateToken({ dni: user.dni, role: user.rol }); // 'rol' en lugar de 'role'
         return res.status(200).json({ message: 'Login exitoso', token });
         
     } catch (err) {
