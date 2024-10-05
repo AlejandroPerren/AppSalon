@@ -62,7 +62,7 @@ export const RegisterContent = () => {
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">DNI</label>
             <input
-              type="number"
+              type="text"
               value={dni}
               onChange={(e) => setDNI(Number(e.target.value))}
               className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -74,7 +74,7 @@ export const RegisterContent = () => {
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">Teléfono</label>
             <input
-              type="number"
+              type="text"
               value={tel}
               onChange={(e) => setTel(Number(e.target.value))}
               className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
