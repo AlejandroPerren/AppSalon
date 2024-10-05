@@ -1,13 +1,12 @@
 import express from 'express';
-
-import { login } from '../controllers/auth/loginController';
 import { tokenMiddleware } from '../middlewares/tokenMiddleware';
-import { citasAdminController } from '../controllers/admin/citasController';
+import { CitasAdminController , deleteCita, CitaAdminController } from '../controllers/admin/citasController';
 
 const router = express.Router(); 
 
-router.post('/citas',tokenMiddleware, citasAdminController);
-router.post('/ingresos',tokenMiddleware, login);
+router.get('/citas',tokenMiddleware, CitasAdminController);
+router.get('/delcitas',tokenMiddleware, deleteCita);
+router.get('/cita',tokenMiddleware, CitaAdminController);
 
 
 export default router; 

@@ -43,7 +43,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
             return res.status(400).json({ error: 'Credenciales incorrectas' });
         }
 
-        const token = await generateToken({ dni: user.dni, role: user.rol }); // 'rol' en lugar de 'role'
+        const token = await generateToken({ dni: user.dni, role: user.rol }); 
         return res.status(200).json({ message: 'Login exitoso', token });
         
     } catch (err) {

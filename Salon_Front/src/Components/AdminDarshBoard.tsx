@@ -15,7 +15,8 @@ interface Ingreso {
 
 export const AdminDashboard = () => {
   const [citas, setCitas] = useState<Cita[]>([]);
-  const [ingresos, setIngresos] = useState<Ingreso[]>([]);
+  const [cita, setCita] = useState<Cita[]>([]);
+  const [delcita, setDelCita] = useState<Cita[]>([]);
   const [error, setError] = useState<string | null>(null); 
   const role = getRoleFromToken();  
 
@@ -24,8 +25,9 @@ export const AdminDashboard = () => {
       const fetchData = async () => {
         try {
           const [citasResponse, ingresosResponse] = await Promise.all([
-            axios.get('http://localhost:3000/api/admin/citas'),
-            axios.get('http://localhost:3000/api/admin/ingresos'),
+            axios.get('http://localhost:4000/api/admin/citas'),
+            axios.get('http://localhost:4000/api/admin/delcitas'),
+            axios.get('http://localhost:4000/api/admin/cita'),
           ]);
           setCitas(citasResponse.data);
           setIngresos(ingresosResponse.data);

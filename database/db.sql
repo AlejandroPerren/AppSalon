@@ -36,3 +36,8 @@ CREATE TABLE IF NOT EXISTS citas_servicios (
   FOREIGN KEY (id_cita) REFERENCES citas(id_cita) ON DELETE CASCADE,
   FOREIGN KEY (id_servicio) REFERENCES servicios(id) ON DELETE CASCADE
 );
+
+
+
+
+
