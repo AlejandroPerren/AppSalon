@@ -1,0 +1,3 @@
+1-  poder Bloquear las citas y los horarios de las citas para que no se puedan usar mas
+
+2-  Poder Desbloquear si se Cancela la cita

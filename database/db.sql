@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS citas (
   fecha DATE NOT NULL,
   hora TIME NOT NULL,
   id_usuario INT,
+  estado VARCHAR(80) NOT NULL DEFAULT 'pendiente',
   PRIMARY KEY (id_cita),
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
 );

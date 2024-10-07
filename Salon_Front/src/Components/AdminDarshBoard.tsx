@@ -7,36 +7,22 @@ interface Cita {
   fecha: string;
   cliente: string;
 }
-
-interface Ingreso {
-  mes: string;
-  monto: number;
-}
-
+const URLCITAS = 'http://localhost:4000/api/admin/citas';
+const URLCITASDEL = 'http://localhost:4000/api/admin/delcitas';
 export const AdminDashboard = () => {
   const [citas, setCitas] = useState<Cita[]>([]);
-  const [cita, setCita] = useState<Cita[]>([]);
-  const [delcita, setDelCita] = useState<Cita[]>([]);
   const [error, setError] = useState<string | null>(null); 
   const role = getRoleFromToken();  
 
   useEffect(() => {
     if (role === 'admin') {
       const fetchData = async () => {
+        const citas = axios.get(URLCITAS)
+        
         try {
-          const [citasResponse, ingresosResponse] = await Promise.all([
-            axios.get('http://localhost:4000/api/admin/citas'),
-            axios.get('http://localhost:4000/api/admin/delcitas'),
-            axios.get('http://localhost:4000/api/admin/cita'),
-          ]);
-          setCitas(citasResponse.data);
-          setIngresos(ingresosResponse.data);
-        } catch (error) {
-          console.error('Error fetching admin data:', error);
-          setError('Error al cargar los datos de administración.');
-        }
+   
       };
-
+    }
       fetchData();
     }
   }, [role]);

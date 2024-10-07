@@ -23,7 +23,7 @@ export const CitasAdminController = async (req: Request, res: Response): Promise
         JOIN servicios ON servicios.id = citas_servicios.id_servicio 
         ORDER BY fecha DESC, hora DESC`;
 
-    try {   
+    try {
         const connection = await (db as Pool).getConnection();
         const [rows] = await connection.query<Cita[]>(SQL);
         connection.release();
@@ -39,46 +39,24 @@ export const CitasAdminController = async (req: Request, res: Response): Promise
     }
 };
 
-//See one Cita
-export const CitaAdminController = async (req: Request, res: Response): Promise<Response> => {
-    const { dni } = req.body as { dni: string };  
 
-    const SQL = `
-        SELECT citas.id_cita, usuarios.dni, servicios.nombre_serv, citas.fecha, citas.hora, 
-        servicios.duracion, servicios.precio, servicios.descripcion
-        FROM usuarios 
-        JOIN citas ON usuarios.id = citas.id_usuario 
-        JOIN citas_servicios ON citas.id_cita = citas_servicios.id_cita 
-        JOIN servicios ON servicios.id = citas_servicios.id_servicio 
-        WHERE usuarios.dni = ?`;
-
-    try {
-        const connection = await (db as Pool).getConnection();
-        const [rows] = await connection.query<Cita[]>(SQL, [dni]);
-        connection.release();
-
-        if (rows.length === 0) {
-            return res.status(400).json({ error: 'No hay citas para este Usuario' });
-        }
-        return res.json(rows); 
-    } catch (error) {
-        console.error('Ocurrió un Error', error);
-        return res.status(500).json({ error: 'Error al Buscar las citas' });
+//Uptadate Cita
+export const modCitas = async (req: Request, res: Response): Promise<Response> => {
+    const { id_cita, estado } = req.body;
+    const SQL = `UPDATE citas SET estado = ? WHERE id_cita = ?`;
+    const estadosPermitidos = ['pendiente', 'cancelada', 'realizada', 'aceptada'];
+    if (!estadosPermitidos.includes(estado)) {
+        return res.status(400).json({ error: 'Estado inválido. Los estados permitidos son: pendiente o completada' });
     }
-};
-
-//Delete Cita
-export const deleteCita = async (req: Request, res: Response): Promise<Response> => {
-    const { id_cita } = req.body;
-    const SQL = `DELETE FROM citas WHERE id_cita = ?`;
     try {
         const connection = await (db as Pool).getConnection();
-        const [rows] = await connection.query(SQL, [id_cita]);
+        const [result] = await connection.query(SQL, [estado, id_cita]);
         connection.release();
-        return res.json(rows);
+        return res.json({ message: 'Cita actualizada correctamente', result });
+        
     } catch (error) {
         console.error('Ocurrio un Error', error);
-        return res.status(500).json({ error: 'Error al Eliminar la Cita' });
+        return res.status(500).json({ error: 'Error al modificar la Cita' });
     }
 }
 
