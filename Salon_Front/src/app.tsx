@@ -4,7 +4,7 @@ import { LoginContent } from './Content/auth/LoginPage';
 import ProtectedRoute from './Components/ProtectedRoute';
 import { NavbarAdmin } from './Content/common/Navbar';
 import { AdminDashboard } from './Components/AdminDarshBoard';
-
+import { CitasForm } from './Components/FormCitas'; 
 
 export const App = () => {
   return (
@@ -16,11 +16,17 @@ export const App = () => {
           <Route path="/auth/login" element={<LoginContent />} />
           <Route path="/admin" element={
             <ProtectedRoute requiredRole="admin">
-                <AdminDashboard/>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/citas" element={
+            <ProtectedRoute requiredRole="admin">
+              <CitasForm />
             </ProtectedRoute>
           } />
         </Routes>
       </BrowserRouter>
     </div>
   );
+  
 };

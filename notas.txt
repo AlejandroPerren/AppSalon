@@ -1,3 +1,10 @@
 1-  poder Bloquear las citas y los horarios de las citas para que no se puedan usar mas
 
 2-  Poder Desbloquear si se Cancela la cita
+
+3- Hacer Backend a citas y ordenar bien el front
+
+
+4- fixear ADminDashBoard
+
+
