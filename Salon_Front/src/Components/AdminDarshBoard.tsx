@@ -7,22 +7,34 @@ interface Cita {
   fecha: string;
   cliente: string;
 }
+
+interface Ingreso {
+  mes: string;
+  monto: number;
+}
+
 const URLCITAS = 'http://localhost:4000/api/admin/citas';
-const URLCITASDEL = 'http://localhost:4000/api/admin/delcitas';
+const URLINGRESOS = 'http://localhost:4000/api/admin/ingresos';
+
 export const AdminDashboard = () => {
   const [citas, setCitas] = useState<Cita[]>([]);
+  const [ingresos, setIngresos] = useState<Ingreso[]>([]); 
   const [error, setError] = useState<string | null>(null); 
   const role = getRoleFromToken();  
 
   useEffect(() => {
     if (role === 'admin') {
       const fetchData = async () => {
-        const citas = axios.get(URLCITAS)
-        
         try {
-   
+          const citasResponse = await axios.get(URLCITAS);
+          setCitas(citasResponse.data);
+
+          const ingresosResponse = await axios.get(URLINGRESOS);
+          setIngresos(ingresosResponse.data);
+        } catch (err) {
+          setError('Error al cargar los datos.');
+        }
       };
-    }
       fetchData();
     }
   }, [role]);

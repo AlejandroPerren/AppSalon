@@ -14,7 +14,7 @@ export const ServicesList = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/servicios'); // Ajusta la URL de la API
+        const response = await axios.get('http://localhost:3000/api/servicios'); 
         setServices(response.data);
       } catch (error) {
         console.error('Error fetching services:', error);
