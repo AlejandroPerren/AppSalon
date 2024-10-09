@@ -10,7 +10,9 @@ export const NavbarAdmin = () => {
   return (
     <nav className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-md">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center p-4">
+        <a href="/">
         <h1 className="text-3xl font-bold">App Salon</h1>
+        </a>
         <button
           onClick={toggleMenu}
           className="md:hidden text-white focus:outline-none"

@@ -10,7 +10,7 @@ export const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <NavbarAdmin /> */}
+        <NavbarAdmin></NavbarAdmin>
         <Routes>
           <Route path="/auth/register" element={<RegisterContent />} />
           <Route path="/auth/login" element={<LoginContent />} />

@@ -4,7 +4,8 @@
 
 3- Hacer Backend a citas y ordenar bien el front
 
-
-4- fixear ADminDashBoard
-
 5- ordenar todos los archivos de mejor manera
+
+6-Mostrar todas las Plantillas
+
+7- ordenar mejor el proyecto 
