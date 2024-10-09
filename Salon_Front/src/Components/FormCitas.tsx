@@ -16,7 +16,7 @@ export const CitasForm = () => {
     setMensaje(null);
 
     try {
-      await axios.post('http://localhost:4000/api/formulario', { fecha, hora, id_usuario: idUsuario });
+      await axios.post('http://localhost:4000/api/Createcita', { fecha, hora, id_usuario: idUsuario });
       setMensaje('Cita creada con éxito');
       navigate('/dashboard'); 
     } catch (err) {

@@ -16,7 +16,7 @@ export const LoginContent = () => {
       const token = await loginService({ dni, password });
       localStorage.setItem('token', token);
 
-      navigate('/dashboard');
+      navigate('/');
     } catch (err) {
       setError('Credenciales incorrectas. Inténtalo de nuevo.');
     }
