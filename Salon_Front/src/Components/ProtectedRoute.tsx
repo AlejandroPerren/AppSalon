@@ -1,23 +1,24 @@
+import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
-import { isLoggedIn, getRoleFromToken } from '../services/isLogget'; 
+import { useAuth } from '../services/useAuth';
 
 interface ProtectedRouteProps {
-  children: JSX.Element;
+  children: ReactNode;
   requiredRole: string;
 }
 
 const ProtectedRoute = ({ children, requiredRole }: ProtectedRouteProps): JSX.Element => {
-  const role = getRoleFromToken();
+  const { isAuthenticated, userRole } = useAuth();
 
-  if (!isLoggedIn()) {
-    return <Navigate to="/auth/login" />;  
+  if (!isAuthenticated) {
+    return <Navigate to="/auth/login" />;
   }
 
-  if (role !== requiredRole) {
-    return <Navigate to="/unauthorized" />; 
+  if (userRole !== requiredRole) {
+    return <Navigate to="/unauthorized" />;
   }
 
-  return children;
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;
